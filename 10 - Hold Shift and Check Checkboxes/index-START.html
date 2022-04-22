@@ -14,7 +14,7 @@
 
     .inbox {
       max-width: 400px;
-      margin: 50px auto;
+      margin: 50px auto;  
       background: white;
       border-radius: 5px;
       box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
@@ -96,6 +96,27 @@
   </div>
 
 <script>
+  const checkboxs = document.querySelectorAll('.inbox input[type="checkbox"]')
+
+  let currentCheck
+
+  function check(e) {
+    let flag = false
+    if (e.shiftKey && this.checked) {
+      checkboxs.forEach(checkbox => {
+        if (checkbox === this || checkbox === currentCheck) {
+          flag = !flag
+        }
+        if (flag) {
+          checkbox.checked = true
+        }
+      })
+    }
+    currentCheck = this
+  }
+
+  checkboxs.forEach(checkbox => checkbox.addEventListener('click', check))
+
 </script>
 </body>
 </html>
